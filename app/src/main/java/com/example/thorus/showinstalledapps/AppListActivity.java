@@ -23,6 +23,7 @@ public class AppListActivity extends AppCompatActivity {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    AppRecyclerViewAdapter appRecyclerViewAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +40,14 @@ public class AppListActivity extends AppCompatActivity {
 
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(this, 1);
 
-        recyclerView.setAdapter(new AppRecyclerViewAdapter(this, appInfoExtractor));
+        if (appRecyclerViewAdapter == null) {
+            appRecyclerViewAdapter = new AppRecyclerViewAdapter(this, appInfoExtractor);
+            recyclerView.setLayoutManager(mLayoutManager);
+            recyclerView.setAdapter(appRecyclerViewAdapter);
+        } else {
+            appRecyclerViewAdapter.setList(appInfoExtractor.getInstalledAppList());
+            appRecyclerViewAdapter.notifyDataSetChanged();
+        }
     }
 
 

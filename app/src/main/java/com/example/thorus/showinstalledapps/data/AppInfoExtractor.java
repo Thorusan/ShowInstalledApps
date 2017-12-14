@@ -20,7 +20,7 @@ public class AppInfoExtractor {
         mContext = context;
     }
 
-    public List<AppData> getInstalledAppInfo() {
+    public List<AppData> getInstalledAppList() {
 
         List<AppData> packageList = new ArrayList<>();
 

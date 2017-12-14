@@ -31,7 +31,7 @@ public class AppRecyclerViewAdapter extends RecyclerView.Adapter<AppRecyclerView
     public AppRecyclerViewAdapter(Activity context, AppInfoExtractor appInfoExtractor) {
         this.activity = context;
         this.appInfoExtractor = appInfoExtractor;
-        appPackageList = appInfoExtractor.getInstalledAppInfo();
+        setList(appInfoExtractor.getInstalledAppList());
     }
 
     @Override
@@ -68,6 +68,13 @@ public class AppRecyclerViewAdapter extends RecyclerView.Adapter<AppRecyclerView
                 activity.startActivityForResult(intent, requestCodeDetail);
             }
         });
+    }
+
+    /**
+     * Set installed App List
+     */
+    public void setList(List<AppData> packageList) {
+        this.appPackageList = appInfoExtractor.getInstalledAppList();
     }
 
     @Override
